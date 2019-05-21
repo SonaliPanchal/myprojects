@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- connection pool object to give connection here is setter injection-->
+	<bean id="drds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="system" />
+		<property name="password" value="manager" />
+	</bean>
+
+	<!-- object creation is happening by ref dao target here is constructor injetion-->
+	<bean id="dao" class="com.nt.dao.StudentDAOImpl">
+		<constructor-arg ref="drds" />
+	</bean>
+
+	<bean id="service" class="com.nt.services.StudentServiceImpl">
+		<constructor-arg ref="dao" />
+	</bean>
+
+<!-- this is called dependency injection -->
+	<bean id="controller" class="com.nt.controller.StudentController">
+		<constructor-arg ref="service" />
+	</bean>
+
+</beans>

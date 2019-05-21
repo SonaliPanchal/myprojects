@@ -1,0 +1,7 @@
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ SNO                                       NOT NULL NUMBER(38)
+ SNAME                                              VARCHAR2(15)
+ TOTAL                                              NUMBER(10,2)
+ AVERAGE                                            NUMBER(10,2)
+ RESULT                                             VARCHAR2(10)
